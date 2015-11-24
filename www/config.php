@@ -6,7 +6,7 @@ if(getenv("ENVIRONMENT") == "prod")
     $database_url = "localhost";
     $database = "kslnotify";
     $username = "kslnotify";
-    $password = '\'5#89@QX$h8';
+    $password = '2Qe4g6F@ui45';
 }
 else if(getenv("ENVIRONMENT") == "test")
 {
