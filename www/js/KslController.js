@@ -2,11 +2,17 @@
 
 kslApp.controller('KslController',
 function KslController($scope, $http) {
-    $scope.submitted = false;
     $scope.notification = {email:"", name:"", url:""};
     $scope.emailStatusClass = '';
     $scope.nameStatusClass = '';
     $scope.urlStatusClass = '';
+
+    //page constants
+    $scope.privacy_policy = "privacy_policy"
+    $scope.contact = "contact"
+    $scope.add_new = "add_new"
+    $scope.after_submit = "after_submit"
+    $scope.page = $scope.add_new
 
     $scope.submitNotification = function()
     {
@@ -15,7 +21,7 @@ function KslController($scope, $http) {
 	    //submit the notification object to the server
 	    $http.post('addNotification.php',$scope.notification, {})
 		.then(function success(response) {
-		    $scope.submitted = true	    
+		    $scope.page=$scope.after_submit
 		}, function error(response) {
 		    //oho, error!
 		});
@@ -27,7 +33,15 @@ function KslController($scope, $http) {
 	$scope.nameStatusClass = '';
 	$scope.urlStatusClass = '';
 	$scope.notification = {email:"", name:"", url:""};
-	$scope.submitted = false
+	$scope.page = $scope.add_new
+    }
+    $scope.showContact = function()
+    {
+	$scope.page = $scope.contact
+    }
+    $scope.showPrivacyPolicy = function()
+    {
+	$scope.page = $scope.privacy_policy
     }
     function validate()
     {
