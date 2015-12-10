@@ -67,7 +67,8 @@ def main
       ads_result = con.query("SELECT * from ads WHERE guid='#{row['guid']}' AND adUrl='#{ad_url}'")
       if (ads_result.num_rows == 0) then
         newAds.push([title, desc, price, image_url, ad_url])
-        con.query("INSERT INTO ads (guid, title, description, price, imgurl, adurl) VALUES ('#{row['guid']}', '#{title}', '#{desc}', '#{price}', '#{image_url}', '#{ad_url}')")
+        insert_query = "INSERT INTO ads (guid, title, description, price, imgurl, adurl) VALUES ('#{row['guid']}', '#{title.sub("'", "\\\\'")}', '#{desc.gsub("'", "\\\\'")}', '#{price}', '#{image_url}', '#{ad_url}')";
+        con.query(insert_query)
       end
     }
  
@@ -82,7 +83,6 @@ There are new ads for you to look at! <br><br>
 If you would like to be removed from the mailing list, <a href="${url}/removeNotification.php?guid=#{row['guid']}">Click here.</a>
 END
 
-puts email
     Net::SMTP.start('localhost', 25) do |smtp|
 #      smtp.send_message email_message, from_email_addr, row['email']
     end
