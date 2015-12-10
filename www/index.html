@@ -15,10 +15,10 @@
 	      <h3>New KSL Notification</h3>
 	    </div>
 	    <div class="modal-body">
-	      <div id="privacyPolicy" ng-show="page==privacy_policy"><!--TODO--></div>
-	      <div id="contact" ng-show="page==contact"><!--TODO--></div>
+	      <div id="privacyPolicy" ng-show="page==privacy_policy" ng-cloak><!--TODO--></div>
+	      <div id="contact" ng-show="page==contact" ng-cloak><!--TODO--></div>
 
-	      <div id="submitted" ng-show="page==after_submit">
+	      <div id="submitted" ng-show="page==after_submit" ng-cloak>
 		Submit Successful! Check your email for instruction on how to remove the notification. And don't forget to create an account so you can managed your notifications. 
 		<a href="" ng-click="createAnother()">Create another.</a>
 	      </div>
